@@ -42,6 +42,8 @@
 #include <opencv2/core/utility.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/imgproc.hpp"
 #include <iostream>
 #include <cstring>
 
@@ -50,27 +52,38 @@
 using namespace std;
 using namespace cv;
 
-/*
-int main(){
-	VideoCapture cap(0);
-	//cap.set(CAP_PROP_FRAME_WIDTH,240);
-	//cap.set(CAP_PROP_FRAME_HEIGHT,160);
+
+int main4(){
+	VideoCapture cap(1);
+	cap.set(CAP_PROP_FRAME_WIDTH,1280);
+	cap.set(CAP_PROP_FRAME_HEIGHT,760);
+	VideoWriter outputVideo;
 	if (!cap.isOpened()) {
 		printf("cant open camera!\n");
 	} else {
 		for(;;)
 		{
-			Mat frame;
-			cap >> frame;
-			imshow("frame", frame);
+			int fps = cap.get(CAP_PROP_FPS);
+			printf("fps:%d\n",fps);
+			Mat src; 
+
+			cap >> src;
+			imshow("frame", src);
 			char cmd = waitKey(1);
 			if (cmd == 'b')
 				break;
-			if (cmd == 'f'){
-				cap.set(CAP_PROP_FOCUS,1);
+			if (cmd == 'c'){
+				Size S = Size((int) cap.get(CAP_PROP_FRAME_WIDTH),(int) cap.get(CAP_PROP_FRAME_HEIGHT));
+				outputVideo.open("output.avi", CV_FOURCC('D','I','V','X'), cap.get(CAP_PROP_FPS), S, true);
+				if (!outputVideo.isOpened())
+				{
+					cout  << "Could not open the output video for write: " << endl;
+				}
+				else{
+					cout << "open camera success"<<endl;
+				}
 			}
 		}
 	}
 	return 0;
 }
-*/

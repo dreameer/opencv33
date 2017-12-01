@@ -342,7 +342,7 @@ static bool readStringList( const string& filename, vector<string>& l )
     return true;
 }
 
-int main4(int argc, char** argv)
+int main3(int argc, char** argv)
 {
     Size boardSize;
     string imagelistfn;
