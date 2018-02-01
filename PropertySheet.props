@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>D:\opencv331build\install\include;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\opencv331build\install\x64\vc11\lib;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\opencv331build\install\x64\vc11\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>opencv_aruco331d.lib;opencv_bgsegm331d.lib;opencv_bioinspired331d.lib;opencv_calib3d331d.lib;opencv_ccalib331d.lib;opencv_core331d.lib;opencv_datasets331d.lib;opencv_dnn331d.lib;opencv_features2d331d.lib;opencv_flann331d.lib;opencv_highgui331d.lib;opencv_imgcodecs331d.lib;opencv_imgproc331d.lib;opencv_ml331d.lib;opencv_objdetect331d.lib;opencv_photo331d.lib;opencv_shape331d.lib;opencv_stitching331d.lib;opencv_superres331d.lib;opencv_video331d.lib;opencv_videoio331d.lib;opencv_videostab331d.lib;opencv_ximgproc331d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

@@ -1,0 +1,8 @@
+%YAML:1.0
+---
+my_object:
+   numClassifiers: 100
+   overlap: 9.9000000953674316e-001
+   searchFactor: 1.7999999523162842e+000
+   iterationInit: 50
+   samplerSearchFactor: 1.7999999523162842e+000

@@ -53,37 +53,40 @@ using namespace std;
 using namespace cv;
 
 
-int main4(){
-	VideoCapture cap(1);
-	cap.set(CAP_PROP_FRAME_WIDTH,1280);
-	cap.set(CAP_PROP_FRAME_HEIGHT,760);
-	VideoWriter outputVideo;
+int main(){
+	VideoCapture cap("rtsp://admin:Qwer1234@192.168.1.64/Streaming/Channels/1");
+	//cap.open(0,0);
+	//cap.set(CAP_PROP_FRAME_WIDTH,640);
+	
+	//cap.set(CAP_PROP_FRAME_HEIGHT,480);
+	//cout<<cap.set(CAP_PROP_EXPOSURE,-6)<<endl;
+	//cap.set(CAP_PROP_AUTO_EXPOSURE,-1);
+	//cout<<"exposure"<<cap.get(CAP_PROP_EXPOSURE);
+	//cout<<"auto exposure"<<cap.get(CAP_PROP_AUTO_EXPOSURE);
+	//cout<<"api"<<cap.get(CAP_PROP_MODE);
 	if (!cap.isOpened()) {
 		printf("cant open camera!\n");
 	} else {
+		Mat frame; 
+		namedWindow("frame",0);
 		for(;;)
 		{
-			int fps = cap.get(CAP_PROP_FPS);
-			printf("fps:%d\n",fps);
-			Mat src; 
-
-			cap >> src;
-			imshow("frame", src);
-			char cmd = waitKey(1);
-			if (cmd == 'b')
-				break;
-			if (cmd == 'c'){
-				Size S = Size((int) cap.get(CAP_PROP_FRAME_WIDTH),(int) cap.get(CAP_PROP_FRAME_HEIGHT));
-				outputVideo.open("output.avi", CV_FOURCC('D','I','V','X'), cap.get(CAP_PROP_FPS), S, true);
-				if (!outputVideo.isOpened())
-				{
-					cout  << "Could not open the output video for write: " << endl;
-				}
-				else{
-					cout << "open camera success"<<endl;
-				}
-			}
+			int64 start = cv::getTickCount();
+			//int fps = cap.get(CAP_PROP_FPS);
+			//printf("fps:%d\n",fps);
+			
+			//cout<<"exposure"<<cap.get(CAP_PROP_EXPOSURE);
+			cap >> frame;
+		double fps = cv::getTickFrequency() / (cv::getTickCount()-start);
+		//cout<<"fps:"<<fps<<endl;
+		std::ostringstream stm;
+		stm << fps;
+		string frameinfo = " fps:" + stm.str();
+		putText(frame, frameinfo, Point(10, 40),FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 0, 255), 1, 8);
+		imshow("frame",frame);
+		if((char)waitKey(1)=='b')break;
 		}
 	}
+	getchar();
 	return 0;
 }

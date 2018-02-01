@@ -54,7 +54,7 @@
 using namespace std;
 using namespace cv;
 
-int main(){
+int main1(){
 
 	VideoCapture left,right;
 	char *leftname[14] = {"left01.jpg","left02.jpg","left03.jpg","left04.jpg","left05.jpg","left06.jpg","left07.jpg","left08.jpg","left09.jpg","left10.jpg","left11.jpg","left12.jpg","left13.jpg","left14.jpg"};
